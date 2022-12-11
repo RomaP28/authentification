@@ -1,0 +1,50 @@
+.account{
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: @color-black;
+  }
+}
+
+
+.data-settings{
+  margin: 4rem auto 0;
+  max-width: 80rem;
+  display: flex;
+  row-gap: 1rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+
+  .field-group{
+    display: flex;
+    align-items: center;
+  }
+
+  .user-img{
+    width: 6.5rem;
+  }
+  input[type="file"] {
+    display: none;
+
+  }
+
+  label{
+    color: @color-black;
+
+    &[for='user-photo']{
+      cursor: pointer;
+      margin-left: 1.5rem;
+      text-decoration: underline;
+    }
+  }
+
+
+  input[type='submit'] {
+    margin-top: 1rem;
+  }
+
+
+}
+

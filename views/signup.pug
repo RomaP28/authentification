@@ -1,0 +1,12 @@
+extends base
+
+block content
+    section.auth
+        form.sign-up-form
+            input.name(type='text' placeholder='Your name')
+            input.email(type='email' placeholder='Your email')
+            input.password(type='password' placeholder='Your password')
+            input.passwordConfirm(type='password' placeholder='Confirm your password')
+            input(type='submit' value='Sign up')
+            p Already have an account?&#32;
+                a(href="/login") Log in

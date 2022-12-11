@@ -1,0 +1,18 @@
+header.header
+    div.alert
+    if user
+        .panel
+            a.home-page(href='/') Home
+
+            .access
+                a.user-name(href='/account') #{user.name.split(' ')[0]}
+
+                a(href='/account')
+                    img.user-img(src= user.photo ? './img/users/' + user.photo: './img/users/default.jpg')
+
+                a.logout: img(src='./img/app/log-out-outline.svg')
+    else
+        .panel
+            .access
+                a.login(href='/login') Log in
+                a.signup(href='/signup') Sign up

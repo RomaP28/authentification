@@ -1,0 +1,11 @@
+extends base
+
+block content
+    section.auth
+        form.login-form
+            input.email(type='email' placeholder='Your email')
+            input.password(type='password' placeholder='Your password')
+            p: a(href="/forgotPassword") Forgot password?
+            input(type='submit' value='Log in')
+            p Don't have account yet? Sign up&#32;
+                a(href="/signup") here
