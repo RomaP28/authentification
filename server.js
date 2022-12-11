@@ -16,7 +16,7 @@ mongoose.connect(process.env.DATABASE, {
     useCreateIndex: true,
     useFindAndModify: false,
     useUnifiedTopology: true
-}).then(()=>console.log('Mode: ' + process.env.NODE_ENV + '. App is enabled at http://127.0.0.1:' + process.env.PORT || 3000));
+}).then(()=>console.log('DB connection successful. Mode: ' + process.env.NODE_ENV + '.'));
 
 const port = process.env.PORT || 3000;
 const server = app.listen(port, ()=>{
