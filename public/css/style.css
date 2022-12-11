@@ -87,7 +87,7 @@ form input[type='submit'] {
   transform: translate(-50%);
   font-size: 1.25rem;
   color: white;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   text-align: center;
 }
 .alert.success {
@@ -98,7 +98,7 @@ form input[type='submit'] {
 }
 .alert.show {
   animation: showAlert linear 4s;
-  padding: 1rem 1.5rem;
+  padding: 1rem 6.5rem;
 }
 .error-message {
   margin: 0 auto;
@@ -159,7 +159,15 @@ form input[type='submit'] {
   justify-content: center;
 }
 .home h1 {
+  font-size: 3rem;
   color: #5f5d5d;
+}
+.home p {
+  font-size: 2rem;
+  color: #5f5d5d;
+}
+.content {
+  text-align: center;
 }
 .account h2 {
   text-align: center;

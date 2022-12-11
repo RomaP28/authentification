@@ -17,9 +17,9 @@ const handleValidationErrorDB = err => {
     return new AppError(message, 400);
 }
 
-const handleJWTError = () => new AppError('Invalid token. Please log in again.', 401)
+const handleJWTError = () => new AppError('Please log in again.', 401)
 
-const handleJWTExpiredError = () => new AppError('Your token has expired! Please log in again.', 401)
+const handleJWTExpiredError = () => new AppError('Your session has expired! Please log in again.', 401)
 
 const sendErrorDev = (err, req, res) => {
     if(req.originalUrl.startsWith('/api')) {
@@ -48,10 +48,10 @@ const sendErrorProd = (err, req, res) => {
             })
         }
          //Programming or other unknown error: don't leak error details
-        console.error('ERROR ', err);
+        // console.error('ERROR ', err);
         return res.status(500).json({
             status: 'error',
-            message: 'Something went very wrong'
+            message: err.message
         })
     }
     //B) website errors

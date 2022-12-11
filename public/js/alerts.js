@@ -8,6 +8,7 @@ export const hideAlert = () => {
 export const showAlert = (type, msg) => {
     const el = document.querySelector('.alert');
     el.innerHTML = msg;
+    el.className = 'alert';
     el.classList.add(`${type}`);
     el.classList.add('show');
     window.setTimeout(hideAlert, 4500);

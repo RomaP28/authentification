@@ -19,7 +19,7 @@ const createSendToken = (user, statusCode, req, res) => {
     const cookieOptions = {
         expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
         httpOnly: true,
-        secure: req.secure || req.headers('x-forwarded-proto') === 'https'
+        secure: req.secure // this need review
     }
 
     res.cookie('jwt', token, cookieOptions);
@@ -50,7 +50,7 @@ exports.signup = catchAsync(async (req, res, next) => {
         // role: req.body.role            this we should set manually in database
     })
     const url = `${req.protocol}://${req.get('host')}/account`;
-    // await new Email(newUser, url).sendWelcome();
+    await new Email(newUser, url).sendWelcome();
 
     createSendToken(newUser, 201, req, res);
 });
