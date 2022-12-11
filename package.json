@@ -4,6 +4,7 @@
   "description": "society app",
   "main": "app.js",
   "scripts": {
+    "start": "node server.js",
     "start:dev": "SET NODE_ENV=development& nodemon server.js",
     "start:prod": "SET NODE_ENV=production& nodemon server.js",
     "debug": "ndb server.js",
@@ -37,5 +38,8 @@
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.5"
+  },
+  "engines": {
+    "node": ">=10.0.0"
   }
 }
