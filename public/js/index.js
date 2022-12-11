@@ -82,7 +82,7 @@ if (resetPasswordForm) {
         // const urlParams = new URLSearchParams(window.location.search);
         // const token = urlParams.get('reset');
 
-        console.log(token)
+        // console.log(token)
         const password = document.querySelector('.password').value;
         const passwordConfirm = document.querySelector('.passwordConfirm').value;
         await resetPassword(token, password, passwordConfirm);

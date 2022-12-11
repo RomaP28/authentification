@@ -5,7 +5,7 @@ export const login = async (email, password) => {
     try{
         const res = await axios({
             method: 'POST',
-            url: 'http://127.0.0.1:3000/api/users/login',
+            url: '/api/users/login',
             data: {
                 email,
                 password
@@ -27,7 +27,7 @@ export const logout = async () => {
     try{
         const res = await axios({
             method: 'GET',
-            url: 'http://127.0.0.1:3000/api/users/logout',
+            url: '/api/users/logout',
         });
         if (res.data.status === 'success') location.assign('/login');
     } catch (err) {
@@ -40,7 +40,7 @@ export const signup = async (name, email, password, passwordConfirm) => {
     try{
         const res = await axios({
             method: 'POST',
-            url: 'http://127.0.0.1:3000/api/users/signup',
+            url: '/api/users/signup',
             data: {
                 name,
                 email,
@@ -64,7 +64,7 @@ export const forgotPassword = async (email) => {
     try{
         const res = await axios({
             method: 'POST',
-            url: 'http://127.0.0.1:3000/api/users/forgotPassword',
+            url: '/api/users/forgotPassword',
             data: {
                 email
             }
@@ -75,7 +75,7 @@ export const forgotPassword = async (email) => {
                 location.assign('/');
             }, 1500);
         }
-        console.log(res);
+        // console.log(res);
     } catch (err) {
         showAlert('error', err.response.data.message);
     }
@@ -85,7 +85,7 @@ export const resetPassword = async (token, password, passwordConfirm) => {
     try{
         const res = await axios({
             method: 'PATCH',
-            url: `http://127.0.0.1:3000/api/users/resetPassword/${token}`,
+            url: `/api/users/resetPassword/${token}`,
             data: {
                 password,
                 passwordConfirm
@@ -97,7 +97,7 @@ export const resetPassword = async (token, password, passwordConfirm) => {
                 location.assign('/');
             }, 1500);
         }
-        console.log(res);
+        // console.log(res);
     } catch (err) {
         showAlert('error', err.response.data.message);
     }

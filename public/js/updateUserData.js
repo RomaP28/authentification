@@ -8,7 +8,7 @@ export const updateSettings = async (data, type) => {
 
         const res = await axios({
             method: 'PATCH',
-            url: `http://127.0.0.1:3000/api/users/${url}`,
+            url: `/api/users/${url}`,
             data
         });
 
