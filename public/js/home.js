@@ -6,7 +6,7 @@ export class App {
     #mapZoomLevel = 15;
     #mapMarker;
     #formPopup;
-    #socket = new WebSocket('ws://127.0.0.1:3000');
+    #socket = new WebSocket('ws://basic-auth.cyclic.app:8080 ');
     #msg ='Tell the world about your activity now! \n Ex.: -I\'m going to the gym! 💪 🏋🏽 ';
     #time;
     #type ='outcoming';

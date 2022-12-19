@@ -12314,7 +12314,7 @@ var App = /*#__PURE__*/function () {
     });
     _classPrivateFieldInitSpec(this, _socket, {
       writable: true,
-      value: new WebSocket('ws://127.0.0.1:3000')
+      value: new WebSocket('ws://basic-auth.cyclic.app:8080 ')
     });
     _classPrivateFieldInitSpec(this, _msg, {
       writable: true,
