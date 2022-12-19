@@ -12267,6 +12267,12 @@ require("core-js/modules/web.dom.iterable.js");
 require("regenerator-runtime/runtime.js");
 var _alerts = require("./alerts");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0) { ; } } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
@@ -12312,7 +12318,7 @@ var App = /*#__PURE__*/function () {
     });
     _classPrivateFieldInitSpec(this, _msg, {
       writable: true,
-      value: 'Ex.: -I\'m going to the gym! 💪 🏋🏽 '
+      value: 'Tell the world about your activity now! \n Ex.: -I\'m going to the gym! 💪 🏋🏽 '
     });
     _classPrivateFieldInitSpec(this, _time, {
       writable: true,
@@ -12320,7 +12326,7 @@ var App = /*#__PURE__*/function () {
     });
     _classPrivateFieldInitSpec(this, _type, {
       writable: true,
-      value: void 0
+      value: 'outcoming'
     });
     this._getPosition();
   }
@@ -12334,7 +12340,6 @@ var App = /*#__PURE__*/function () {
   }, {
     key: "_loadMap",
     value: function _loadMap(position) {
-      var _this = this;
       var _position$coords = position.coords,
         latitude = _position$coords.latitude,
         longitude = _position$coords.longitude;
@@ -12343,68 +12348,65 @@ var App = /*#__PURE__*/function () {
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(_classPrivateFieldGet(this, _map));
-      this._renderMarker({
-        latlng: {
-          lat: latitude,
-          lng: longitude
-        }
-      });
-      // this.#map.on('dblclick', this._renderMarker.bind(this));
-      _classPrivateFieldGet(this, _map).on('click', function () {
-        console.log(_classPrivateFieldGet(_this, _mapZoomLevel));
+
+      // this._renderMarker({ latlng: { lat: latitude, lng: longitude }} );
+      _classPrivateFieldGet(this, _map).on('click', this._renderMarker.bind(this));
+    }
+  }, {
+    key: "_renderMarker",
+    value: function _renderMarker(mapE) {
+      var _this = this;
+      var _mapE$latlng = mapE.latlng,
+        lat = _mapE$latlng.lat,
+        lng = _mapE$latlng.lng;
+      if (_classPrivateFieldGet(this, _mapMarker)) _classPrivateFieldGet(this, _map).removeLayer(_classPrivateFieldGet(this, _mapMarker));
+      if (_classPrivateFieldGet(this, _formPopup)) _classPrivateFieldGet(this, _formPopup).remove();
+      _classPrivateFieldSet(this, _time, new Date().toLocaleString());
+      _classPrivateFieldSet(this, _mapMarker, L.marker([lat, lng], {
+        draggable: true
+      }).addTo(_classPrivateFieldGet(this, _map)).bindPopup(L.popup({
+        closeButton: false,
+        closeOnClick: false,
+        autoClose: false,
+        content: "<form class=\"popup-form\" autocomplete=\"off\">\n                        <textarea class=\"popup-message\" rows=\"3\" cols=\"25\" maxlength=\"150\" type=\"text\" id=\"user-input\">".concat(_classPrivateFieldGet(this, _msg), "</textarea>\n                        <div class=\"popup-group\">\n                            <span class=\"popup-time\"></span>\n                            <input class=\"submit\" type=\"submit\" value=\"Post\">\n                        <div>\n                     </form>")
+      })).openPopup());
+      _classPrivateFieldSet(this, _formPopup, document.querySelector('.popup-form'));
+      var userInput = document.querySelector('.popup-message');
+      userInput.focus();
+      _classPrivateFieldGet(this, _formPopup).addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!userInput.value) return;
+        _classPrivateFieldSet(_this, _msg, userInput.innerHTML);
+        _classPrivateFieldSet(_this, _time, new Date().toLocaleString());
+        _classPrivateFieldSet(_this, _type, 'user');
+        var outcomingMsg = "".concat(_classPrivateFieldGet(_this, _msg), "|").concat(_classPrivateFieldGet(_this, _time), "|").concat([lat, lng]);
+        _classPrivateFieldGet(_this, _socket).send(outcomingMsg); //отправляем сообщение
+        document.querySelector('.popup-time').innerHTML = _classPrivateFieldGet(_this, _time);
       });
     }
-
-    // _renderMarker(mapE){
-    //     const { lat, lng } = mapE.latlng;
-    //     if (this.#mapMarker) this.#map.removeLayer(this.#mapMarker);
-    //     if (this.#formPopup) this.#formPopup.remove();
-    //
-    //     this.#time = new Date().toLocaleString();
-    //
-    //     this.#mapMarker = L.marker([lat, lng], {
-    //         draggable: true
-    //     }).addTo(this.#map).bindPopup(L.popup({
-    //         closeButton: false,
-    //         closeOnClick: false,
-    //         autoClose: false,
-    //         content: `<form class="popup-form" autocomplete="off">
-    //                     ${getHtml(msg, type, time)}
-    //                     <div class="field-group">
-    //                         <input class="user-input" maxlength="250" type="text" id="user-input">
-    //                         <input class="submit" type="submit" value="Post">
-    //                     <div>
-    //                  </form>`
-    //     })).openPopup()
-    //
-    //     this.#formPopup = document.querySelector('.popup-form');
-    //     const userInput = document.querySelector('.user-input');
-    //
-    //     this.#formPopup.addEventListener('submit', e => {
-    //             e.preventDefault();
-    //             if (!userInput.value) return;
-    //             this.#msg = userInput.value;
-    //             this.#time = new Date().toLocaleString();
-    //             this.#type = 'user';
-    //             const outcomingMsg = `${msg}|${time}|${[lat, lng]}`;
-    //             this.#socket.send(outcomingMsg); //отправляем сообщение
-    //             this.#formPopup.querySelector('.popup-message').innerHTML = `<p class="sub-title">${msg}<br>${time}</p>`
-    //             userInput.value = '';
-    //     })
-    // }
-    //
-    //
-    // _receiveMsg() {
-    //     this.#socket.onmessage = event => { //примнимаем сообщение
-    //         const arr = JSON.parse(event.data).data;
-    //         let newData = '';
-    //         arr.forEach(el => newData += String.fromCharCode(el))
-    //
-    //         const [latitude, longitude] = newData.split('|')[2].split(',');
-    //
-    //         this._showForm({latlng: {lat: latitude, lng: longitude}});
-    //     };
-    // }
+  }, {
+    key: "_receiveMsg",
+    value: function _receiveMsg() {
+      var _this2 = this;
+      _classPrivateFieldGet(this, _socket).onmessage = function (event) {
+        //примнимаем сообщение
+        var arr = JSON.parse(event.data).data;
+        var newData = '';
+        arr.forEach(function (el) {
+          return newData += String.fromCharCode(el);
+        });
+        var _newData$split$2$spli = newData.split('|')[2].split(','),
+          _newData$split$2$spli2 = _slicedToArray(_newData$split$2$spli, 2),
+          latitude = _newData$split$2$spli2[0],
+          longitude = _newData$split$2$spli2[1];
+        _this2._showForm({
+          latlng: {
+            lat: latitude,
+            lng: longitude
+          }
+        });
+      };
+    }
   }]);
   return App;
 }();

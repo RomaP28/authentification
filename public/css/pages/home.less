@@ -12,7 +12,7 @@ section.home{
         margin-top: 0;
       }
       .user-input{
-        width: 19rem;
+
       }
   }
 }
@@ -41,14 +41,42 @@ section.home{
   font-size: 1.4rem;
 }
 
-.field-group{
-  display: flex;
-  //column-gap: 1rem;
-  justify-content: space-between;
 
-  div:last-of-type{
-    display: none;
-  }
+.leaflet-popup-content{
+  margin-right: 20px !important;
 }
 
+.popup{
+  &-message{
+    resize: none;
+    border: none;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+    border-radius: 1.2rem;
+    padding: .4rem;
 
+    &::-webkit-scrollbar{
+      display: none;
+      width: 0;
+    }
+    &:focus,
+    &:active{
+      outline: none;
+      border: none;
+      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.14);
+    }
+  }
+  &-group{
+    display: flex;
+    justify-content: space-between;
+    div:last-of-type{
+      display: none;
+    }
+  }
+  &-time{
+    text-align: right;
+    font-size: .9rem;
+    align-self: self-end;
+  }
+}

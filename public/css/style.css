@@ -203,9 +203,6 @@ section.home {
 section.home form input[type='submit'] {
   margin-top: 0;
 }
-section.home form .user-input {
-  width: 19rem;
-}
 #map {
   flex: 1;
   height: 100%;
@@ -226,12 +223,39 @@ section.home form .user-input {
   margin: 1.3rem 0;
   font-size: 1.4rem;
 }
-.field-group {
+.leaflet-popup-content {
+  margin-right: 20px !important;
+}
+.popup-message {
+  resize: none;
+  border: none;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 1.5rem;
+  text-align: center;
+  border-radius: 1.2rem;
+  padding: 0.4rem;
+}
+.popup-message::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}
+.popup-message:focus,
+.popup-message:active {
+  outline: none;
+  border: none;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.14);
+}
+.popup-group {
   display: flex;
   justify-content: space-between;
 }
-.field-group div:last-of-type {
+.popup-group div:last-of-type {
   display: none;
+}
+.popup-time {
+  text-align: right;
+  font-size: 0.9rem;
+  align-self: self-end;
 }
 .account h2 {
   text-align: center;
