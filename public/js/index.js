@@ -1,6 +1,8 @@
 import '@babel/polyfill';
 import { login, logout, signup, forgotPassword, resetPassword } from "./auth";
 import { updateSettings } from "./updateUserData";
+import { App } from "./home";
+
 
 const loginForm = document.querySelector('.login-form');
 const signUpForm = document.querySelector('.sign-up-form');
@@ -10,6 +12,7 @@ const userPasswordForm = document.querySelector('.user-password');
 const userPhoto = document.getElementById('user-photo');
 const forgotPasswordForm = document.querySelector('.forgot-password');
 const resetPasswordForm = document.querySelector('.reset-password');
+const mapHomePage = document.getElementById('map');
 
 if (loginForm)
     loginForm.addEventListener('submit', e=>{
@@ -88,3 +91,6 @@ if (resetPasswordForm) {
         await resetPassword(token, password, passwordConfirm);
     })
 }
+
+
+if(mapHomePage) new App();

@@ -1,5 +1,40 @@
 .auth{
   width: 100%;
-  height: calc(100vh - 15rem);
+  height: calc(100vh - 5rem);
   display: flex;
+  background-image: linear-gradient(
+          to right,
+          rgba(255,255,255,1) 35%,
+          rgba(255,255,255,0)),
+          url(../img/app/unsplash.webp);
+  background-position: top right;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  @media(min-width: 1920px) {
+    background-image: linear-gradient(
+            to right,
+            rgba(255,255,255,1) 45%,
+            rgba(255,255,255,0)),
+    url(../img/app/unsplash.webp);
+  }
+
+  @media(max-height: 1200px) {
+    background-size: contain;
+  }
+
+  @media(max-width: 1300px) {
+    background-position: top left;
+    background-size: cover;
+  }
+
+  .container{
+    padding: 7rem 0 0 7rem;
+    @media(max-width: 400px){
+      padding: 0;
+      form{
+        margin: 0 auto;
+      }
+    }
+  }
 }

@@ -2,27 +2,28 @@ extends base
 
 block content
     section.account
-        h2 Account Settings
-        .data-settings
-            //- request without API
-            //- form(action='/update-user-data' method='POST' enctype='multipart/form-data')
+        .container
+            h2 Account Settings
+            .data-settings
+                //- for request without API
+                //- form(action='/update-user-data' method='POST' enctype='multipart/form-data')
 
-            form.user-data
-                .field-group
-                    img.user-img.img-profile(src= user.photo ? './img/users/' + user.photo: './img/users/default.jpg')
-                    label(for='user-photo') Upload new photo
-                    input#user-photo(type='file' name='photo' accept='image/*').photo
-                label(for='user-name') Name
-                input#user-name(type='text' value=`${user.name}`, required, name='name').name
-                label(for='user-email') Email
-                input#user-email(type='email' value=`${user.email}`, required, name='email').email
-                input.save-changes(type='submit' value='Save settings')
+                form.user-data
+                    .field-group
+                        img.user-img.img-profile(src= user.photo ? './img/users/' + user.photo: './img/users/default.jpg')
+                        label(for='user-photo') Upload new photo
+                        input#user-photo(type='file' name='photo' accept='image/*').photo
+                    label(for='user-name') Name
+                    input#user-name(type='text' value=`${user.name}`, required, name='name').name
+                    label(for='user-email') Email
+                    input#user-email(type='email' value=`${user.email}`, required, name='email').email
+                    input.save-changes(type='submit' value='Save settings')
 
-            form.user-password
-                label(for='password') Current Password
-                input#password-current(type='password' placeholder='********' required, minlength='8').password
-                label(for='password') New Password
-                input#password(type='password' placeholder='********' required, minlength='8').password
-                label(for='password-confirm') Confirm Password
-                input#password-confirm(type='password' placeholder='********' required, minlength='8').password-confirm
-                input.save-password(type='submit' value='Save password')
+                form.user-password
+                    label(for='password') Current Password
+                    input#password-current(type='password' placeholder='********' required, minlength='8').password
+                    label(for='password') New Password
+                    input#password(type='password' placeholder='********' required, minlength='8').password
+                    label(for='password-confirm') Confirm Password
+                    input#password-confirm(type='password' placeholder='********' required, minlength='8').password-confirm
+                    input.save-password(type='submit' value='Save password')

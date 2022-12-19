@@ -1,6 +1,7 @@
 html {
   font-size: 10px;
   font-family: 'Noto Sans', sans-serif;
+  box-sizing: border-box;
 }
 body {
   box-sizing: border-box;
@@ -28,6 +29,11 @@ ul li {
 section {
   padding: 5rem 0;
 }
+.container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
 @font-face {
   font-family: 'Noto Sans';
   src: local('Noto Sans'), local('Noto Sans'), url('../fonts/NotoSans-Regular.ttf') format('truetype');
@@ -48,7 +54,6 @@ section {
   }
 }
 form {
-  margin: auto;
   width: 25rem;
   display: flex;
   flex-direction: column;
@@ -89,6 +94,7 @@ form input[type='submit'] {
   color: white;
   border-radius: 0.5rem;
   text-align: center;
+  z-index: 401;
 }
 .alert.success {
   background-color: rgba(60, 203, 60, 0.9);
@@ -151,23 +157,81 @@ form input[type='submit'] {
 }
 .auth {
   width: 100%;
-  height: calc(100vh - 15rem);
+  height: calc(100vh - 5rem);
+  display: flex;
+  background-image: linear-gradient(to right, #ffffff 35%, rgba(255, 255, 255, 0)), url(../img/app/unsplash.webp);
+  background-position: top right;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+@media (min-width: 1920px) {
+  .auth {
+    background-image: linear-gradient(to right, #ffffff 45%, rgba(255, 255, 255, 0)), url(../img/app/unsplash.webp);
+  }
+}
+@media (max-height: 1200px) {
+  .auth {
+    background-size: contain;
+  }
+}
+@media (max-width: 1300px) {
+  .auth {
+    background-position: top left;
+    background-size: cover;
+  }
+}
+.auth .container {
+  padding: 7rem 0 0 7rem;
+}
+@media (max-width: 400px) {
+  .auth .container {
+    padding: 0;
+  }
+  .auth .container form {
+    margin: 0 auto;
+  }
+}
+section.home {
+  font-weight: 400;
+  line-height: 1.6;
+  height: calc(100vh - 5rem);
+  overscroll-behavior-y: none;
+  background-color: #fff;
+  padding: 0;
   display: flex;
 }
-.home {
-  display: flex;
-  justify-content: center;
+section.home form input[type='submit'] {
+  margin-top: 0;
 }
-.home h1 {
-  font-size: 3rem;
-  color: #5f5d5d;
+section.home form .user-input {
+  width: 19rem;
 }
-.home p {
+#map {
+  flex: 1;
+  height: 100%;
+}
+.title,
+.sub-title {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
   font-size: 2rem;
   color: #5f5d5d;
 }
-.content {
-  text-align: center;
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.sub-title {
+  margin: 1.3rem 0;
+  font-size: 1.4rem;
+}
+.field-group {
+  display: flex;
+  justify-content: space-between;
+}
+.field-group div:last-of-type {
+  display: none;
 }
 .account h2 {
   text-align: center;
@@ -179,10 +243,12 @@ form input[type='submit'] {
   max-width: 80rem;
   display: flex;
   row-gap: 1rem;
+  justify-content: space-evenly;
 }
 @media (max-width: 768px) {
   .data-settings {
     flex-direction: column;
+    align-items: center;
   }
 }
 .data-settings .field-group {

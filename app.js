@@ -15,6 +15,8 @@ const globalErrorHandler = require('./controllers/errorController');
 const userRouter = require('./routes/userRoutes');
 const viewRouter = require('./routes/viewRoutes');
 
+
+
 const app = express();
 
 app.enable('trust proxy');
