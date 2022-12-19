@@ -6,7 +6,7 @@ export class App {
     #mapZoomLevel = 15;
     #mapMarker;
     #formPopup;
-    #socket = new WebSocket(`ws://${window.location.host}`);
+    #socket = new WebSocket(`wss://${window.location.host}`);
     #msg ='Tell the world about your activity now! \n Ex.: -I\'m going to the gym! 💪 🏋🏽 ';
     #time;
     #type ='outcoming';

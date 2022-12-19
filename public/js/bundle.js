@@ -12314,7 +12314,7 @@ var App = /*#__PURE__*/function () {
     });
     _classPrivateFieldInitSpec(this, _socket, {
       writable: true,
-      value: new WebSocket("ws://".concat(window.location.host))
+      value: new WebSocket("wss://".concat(window.location.host))
     });
     _classPrivateFieldInitSpec(this, _msg, {
       writable: true,
